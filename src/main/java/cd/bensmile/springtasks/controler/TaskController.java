@@ -24,6 +24,8 @@ public class TaskController {
 
     @PostMapping("/save")
     public Task save(@RequestBody Task task) {
+
+        System.out.println("task = " + task.getName());
         return this.taskService.save(task);
     }
 }

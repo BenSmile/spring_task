@@ -22,7 +22,7 @@ export class TasksListComponent implements OnInit {
             .subscribe(
                ( tasks : any[] ) =>{
                    this.tasks = tasks
-               }
+               }, (error => console.log(error))
             );
 
         // this.tasks.push(new Task(1, "Tuto Spring boot", true, "04/20/2021")),
@@ -31,14 +31,14 @@ export class TasksListComponent implements OnInit {
         //     this.tasks.push(new Task(4, "Tuto boot", false, "04/20/2021"))
     }
 
-
     getDueDateLabel(task: Task) {
         return task.completed ? 'label-success' : 'label-primary';
     }
 
     onTaskChange(event, task) {
         console.log("Task changed = ", event.target.checked)
-        // this.taskService(task, event.target.checked).subscribe();
+
+        this.taskService.saveTask(task, event.target.checked).subscribe();
     }
 
 }
